@@ -18,10 +18,8 @@ RUN ./install_cache_purge.sh
 RUN sed -i 's/worker_processes  1/worker_processes  auto/' /etc/nginx/nginx.conf
 
 # Copy in config
-COPY vhost.extra/* /etc/nginx/vhost.extra/
-COPY vhost.d/* /etc/nginx/vhost.d/
-COPY conf.d/* /etc/nginx/conf.d/
-COPY network_internal.conf /etc/nginx/
+COPY etc.nginx/common.d/* /etc/nginx/common.d/
+COPY etc.nginx/network_internal.conf /etc/nginx/
 
 # Persist certs, cache and dhparam
 VOLUME ["/etc/nginx/certs", "/etc/nginx/dhparam", "/var/cache/nginx"]
